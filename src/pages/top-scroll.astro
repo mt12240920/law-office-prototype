@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>法律事務所 彰｜6面スクロール試作 v3</title>
+<meta name="description" content="法律事務所 彰の構成・スクロール動作確認用プロトタイプ。">
+<style is:global>
+/* 試作専用。既存のTOPとは独立して配置してください。 */
+*{box-sizing:border-box}html{--header:86px;--ink:#143957;--navy:#0d3656;--pale:#eef5f9;--line:#d7e3eb;--gold:#ac8a4c;color:var(--ink);background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;line-height:1.85}body{margin:0}button,a,summary{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}a{color:inherit;text-decoration:none}a:hover,button:hover{text-underline-offset:5px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #b38b3f;outline-offset:4px}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-weight:500}h2{font-size:clamp(28px,3vw,42px);line-height:1.65;letter-spacing:.05em}button:disabled{opacity:.35;cursor:default}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:50}.skip:focus{top:8px}
+.site-header{height:var(--header);display:flex;align-items:center;gap:24px;justify-content:space-between;padding:12px 4.5%;border-bottom:1px solid var(--line);background:#fff;position:relative;z-index:20}.brand{display:flex;flex-direction:column;font-family:Georgia,"Yu Mincho",serif;flex-shrink:0}.brand span{font-size:20px;letter-spacing:.09em}.brand strong{font-size:13px;font-weight:500;letter-spacing:.16em}.global-nav{display:flex;gap:24px;font-size:13px;align-items:center}.global-nav a{padding:9px 0}.global-nav a[aria-current="location"]{box-shadow:0 2px var(--gold)}.global-nav .nav-contact{background:var(--navy);color:white;padding:11px 20px}.mobile-menu{display:none}
+.stage{height:calc(100svh - var(--header));overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;position:relative;outline-offset:-4px;overscroll-behavior-y:contain}.panel{min-height:100%;scroll-snap-align:start;scroll-snap-stop:always;position:relative;display:flex;flex-direction:column;justify-content:center;padding:52px 8% 66px;overflow-wrap:anywhere}.panel:focus{outline:none}.eyebrow{font-size:11px;letter-spacing:.18em;color:#587890;font-weight:600;margin-bottom:16px}.section-step{position:absolute;top:20px;left:8%;font-size:10px;letter-spacing:.12em;color:#617b8d}.next-section{position:absolute;bottom:16px;right:8%;font-size:11px;letter-spacing:.08em;padding:7px 0}.next-section:hover{text-decoration:underline}.button{display:inline-flex;gap:36px;align-items:center;justify-content:space-between;background:var(--navy);color:white;border:1px solid var(--navy);padding:15px 24px;min-height:48px;font-size:14px}.button.outline{background:transparent;color:var(--ink);border-color:#91a8b9}.button:hover{filter:brightness(1.15)}.link{display:inline-block;border:0;background:none;border-bottom:1px solid #9db2c1;padding:10px 0;font-size:13px;min-height:44px}.link:hover{text-decoration:underline}.draft{font-size:11px;color:#617283}.photo-crop{width:100%;height:auto;display:block;background:#dce7ec}.photo-caption{font-size:10px;color:#617283;margin-top:8px}.hero{padding:0 0 46px 8%;display:grid;grid-template-columns:1.05fr 1fr;gap:6%;align-content:center;align-items:center}.hero-copy{padding:54px 0 40px}.hero h1{font-size:clamp(36px,4.7vw,68px);line-height:1.6;letter-spacing:.07em}.hero .office-name{font-family:"Yu Mincho",serif;font-size:22px;margin-top:22px}.hero-actions{display:flex;gap:15px;flex-wrap:wrap;margin-top:36px}.hero .button{font-size:13px;padding:14px 20px;gap:22px}.hero-photo{margin:0;align-self:center}.hero-photo .photo-caption{padding-right:20px}.hero .prototype-label{position:absolute;top:15px;left:8%;font-size:10px;color:#6d7b85}.values{background:linear-gradient(#fff 52%,#eff6fa 52%)}.thoughts{display:grid;grid-template-columns:1fr 1.05fr;gap:9%;margin-bottom:40px;align-items:center}.thoughts h2{font-size:clamp(27px,3vw,40px)}.thoughts-copy{font-family:"Yu Mincho",serif;font-size:15px;line-height:2.1}.thoughts-copy p+p{margin-top:12px}.values-title{font-size:25px;margin-bottom:22px}.value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}.value-grid article{border-top:1px solid #b7ccd9;padding-top:15px}.value-grid .number{font-family:Georgia,serif;font-size:25px;color:#58788e}.value-grid h3{font-size:21px;margin:8px 0 10px}.value-grid p{font-size:13px;line-height:1.9}.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:8%;align-items:center}.about-copy h2{font-size:clamp(34px,4vw,52px)}.about-copy p:not(.eyebrow){font-family:"Yu Mincho",serif;font-size:17px;margin:22px 0 28px;line-height:2}.about{background:#fafbfc}.work-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px}.work-head .draft{max-width:360px}.carousel{position:relative;min-width:0}.carousel-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;padding:4px 2px 18px;scrollbar-width:thin;scrollbar-color:#a8bfce transparent}.practice-card{flex:0 0 calc((100% - 48px)/3);min-width:0;min-height:300px;background:#f0f6fa;border-top:2px solid #ad8c54;padding:30px 28px;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column}.practice-card .number{font-size:12px;color:#617d91;letter-spacing:.1em}.practice-card h3{font-size:26px;margin:30px 0 16px}.practice-card p{font-size:14px;line-height:2}.practice-card button{align-self:flex-end;margin-top:auto;padding-top:22px}.carousel-controls{display:flex;gap:14px;align-items:center;justify-content:flex-end;margin-top:14px}.round-button{width:46px;height:46px;border:1px solid #a9becc;border-radius:50%;background:white;font-size:20px}.carousel-position{font-size:12px;color:#617283;margin-right:auto}.audience{background:#f4f8fa}.audience-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:32px}.audience-card{padding:42px;background:#fff;border-top:2px solid #ad8c54;display:flex;flex-direction:column;align-items:flex-start;min-height:340px}.audience-card h2{font-size:31px;line-height:1.65;margin-bottom:25px}.audience-card p:not(.eyebrow){font-size:15px;margin-bottom:28px}.audience-card .link{margin-top:auto}.office-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:8%;align-items:center}.office-grid dl{margin:25px 0 0}.office-grid dl>div{display:grid;grid-template-columns:88px 1fr;gap:16px;border-bottom:1px solid var(--line);padding:15px 0;font-size:14px}.office-grid dt{font-weight:600}.office-grid dd{margin:0;color:#607485}.office-grid .office-name{font-size:22px;font-family:"Yu Mincho",serif;margin-top:28px}.map-placeholder{min-height:360px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:#ecf1f4;border:1px solid #c9d7e0;text-align:center;padding:25px}.map-placeholder strong{font-family:"Yu Mincho",serif;font-size:28px;font-weight:500}.map-placeholder span{font-size:12px;color:#607485}.contact{background:var(--navy);color:#fff;text-align:center}.contact .eyebrow{color:#bfdae9}.contact h2{font-size:clamp(32px,4vw,54px)}.contact>div>p:not(.eyebrow){font-size:15px;margin:22px 0 32px}.contact .button{background:#fff;color:var(--navy);min-width:280px}.contact .draft{color:#cbdee9;font-size:11px!important}.footer{position:absolute;bottom:20px;left:8%;right:8%;display:flex;justify-content:space-between;gap:18px;align-items:center;text-align:left}.footer .brand span{font-size:15px}.footer .brand strong{font-size:11px}.footer nav{display:flex;gap:22px;font-size:11px;flex-wrap:wrap}.footer button{border:0;background:transparent;color:inherit;font-size:11px;padding:8px 0}.footer button:hover{text-decoration:underline}.panel-nav{position:fixed;right:14px;top:45%;z-index:15;display:flex;flex-direction:column;gap:3px;padding:6px;background:#ffffffea;border:1px solid #e0e8ee;border-radius:22px}.panel-nav a{width:28px;height:28px;display:grid;place-items:center;font-size:10px;border-radius:50%;color:#58788e}.panel-nav a[aria-current="location"]{background:var(--navy);color:#fff}.panel-nav a:hover{background:#dceaf3}.dialog{max-width:min(640px,calc(100% - 32px));max-height:85svh;border:1px solid var(--line);padding:30px;color:var(--ink);background:#fff}.dialog::backdrop{background:#0b253ab3}.dialog .close-row{display:flex;justify-content:flex-end;margin-bottom:20px}.dialog .close-row button{background:#f1f6fa;border:1px solid #adc1ce;padding:9px 16px;min-height:44px}.dialog h2{font-size:28px;margin-bottom:20px}.dialog p{font-size:14px;line-height:2}.dialog ul{font-size:14px;line-height:2.1;padding-left:20px}.dialog .draft{margin-top:20px;font-size:11px}.dialog .link{margin-top:20px}
+@media(max-width:1120px){.global-nav{gap:14px;font-size:11px}.brand span{font-size:17px}.site-header{gap:15px}.global-nav .nav-contact{padding:10px 14px}.panel{padding-inline:6%}.section-step{left:6%}.hero{padding-right:0}.practice-card{padding:24px 22px}.thoughts-copy{font-size:14px}.value-grid{gap:20px}.value-grid h3{font-size:19px}.audience-card{padding:30px}}
+@media(max-width:850px){html{--header:78px}.global-nav{display:none}.mobile-menu{display:block}.mobile-menu summary{border:1px solid var(--line);padding:9px 13px;cursor:pointer;font-size:13px;min-height:44px}.mobile-menu nav{position:absolute;top:100%;left:0;right:0;max-height:calc(100svh - var(--header));overflow:auto;background:white;padding:18px 6%;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;border-bottom:1px solid var(--line);box-shadow:0 10px 20px #193c5012}.mobile-menu nav a{padding:9px 0;font-size:13px;min-height:44px}.panel-nav{right:3px;padding:3px}.panel-nav a{width:23px;height:28px}.hero h1{font-size:42px}.hero .button{font-size:12px}.value-grid{grid-template-columns:1fr 1fr;gap:20px 32px}.values{background:#f2f7fa}.values-title{font-size:23px}.thoughts{gap:7%;margin-bottom:30px}.thoughts h2{font-size:28px}.value-grid h3{font-size:20px;margin:3px 0 6px}.value-grid .number{font-size:19px}.practice-card{flex-basis:calc((100% - 24px)/2)}.practice-card h3{font-size:24px}.audience-card h2{font-size:25px}.office-grid{gap:6%}.office-grid dl>div{grid-template-columns:70px 1fr;font-size:13px}.map-placeholder{min-height:300px}}
+/* 小さい画面・拡大表示では、面の途中でも自由に読むことを優先。 */
+@media(max-width:640px){.stage{scroll-snap-type:y proximity}.panel{padding:52px 8% 62px;min-height:100%;justify-content:center}.hero{display:flex;gap:24px;padding:46px 8% 60px;justify-content:center}.hero-copy{padding:0;width:100%}.hero h1{font-size:clamp(32px,8.5vw,46px)}.hero .office-name{font-size:18px;margin-top:14px}.hero-actions{margin-top:22px;gap:12px}.hero-photo{width:100%;max-width:430px}.hero .prototype-label{left:8%;font-size:9px}.hero .button{padding:11px 15px;font-size:12px}.photo-caption{font-size:9px}.thoughts{grid-template-columns:1fr;gap:18px;margin-bottom:32px}.thoughts h2{font-size:28px}.thoughts-copy{font-size:14px}.values-title{font-size:23px}.value-grid{grid-template-columns:1fr;gap:20px}.value-grid article{display:grid;grid-template-columns:30px 1fr;gap:5px 10px}.value-grid h3{margin:0}.value-grid p{grid-column:2;font-size:13px}.about-grid{grid-template-columns:1fr;gap:25px}.about-copy h2{font-size:35px}.about-copy p:not(.eyebrow){font-size:15px;margin:16px 0 22px}.work-head{display:block;margin-bottom:22px}.work-head .draft{font-size:10px;margin-top:12px}.carousel-track{gap:16px}.practice-card{flex-basis:100%;min-height:300px;padding:26px}.practice-card h3{margin-top:25px}.audience-grid{grid-template-columns:1fr;gap:24px}.audience-card{padding:28px;min-height:270px}.audience-card h2{font-size:26px}.audience-card p:not(.eyebrow){font-size:14px}.office-grid{grid-template-columns:1fr;gap:28px}.office-grid dl>div{font-size:13px}.office-grid .office-name{font-size:20px;margin-top:15px}.map-placeholder{min-height:250px}.contact{padding-bottom:36px}.contact h2{font-size:32px}.contact .button{min-width:0;width:100%;font-size:13px}.contact>div>p:not(.eyebrow){font-size:14px}.footer{position:static;flex-direction:column;align-items:flex-start;margin-top:60px;gap:22px}.footer nav{gap:18px}.footer button,.footer nav a{min-height:44px;display:flex;align-items:center}.panel-nav{display:none}.section-step{left:8%}}
+@media(max-height:650px) and (min-width:641px){.stage{scroll-snap-type:y proximity}.panel{padding-top:52px;padding-bottom:60px}.hero{padding-top:20px}.hero-copy{padding-top:28px}.values .thoughts{margin-bottom:24px}.contact .footer{position:static;margin-top:45px}.hero-photo{max-width:460px}.practice-card{min-height:260px}}
+@media(prefers-reduced-motion:reduce){.stage,.carousel-track{scroll-behavior:auto;scroll-snap-type:none}}
+@media print{.site-header,.panel-nav,.next-section,.carousel-controls,.mobile-menu{display:none}.stage{height:auto;overflow:visible}.panel{min-height:0;break-inside:avoid;padding:32px}.carousel-track{overflow:visible;display:grid;grid-template-columns:repeat(2,1fr)}.footer{position:static;margin-top:30px}.hero{display:grid}.contact{print-color-adjust:exact}}
+
+/* v2：業務説明をカード内で読む。高さは固定せず、長文は自然に伸ばす。 */
+.work{padding-inline:6%}
+.practice-card{min-height:clamp(360px,52svh,560px);padding:34px 30px}
+.practice-card h3{margin:28px 0 20px}
+.practice-card p{font-size:16px;line-height:2;overflow-wrap:anywhere}
+@media(max-width:850px){.practice-card{padding:28px 24px}}
+@media(max-width:640px){.work{padding-inline:8%}.practice-card{flex:0 0 100%;min-height:380px;padding:28px 24px}.practice-card p{font-size:16px;line-height:1.95}}
+@media print{.practice-card{min-height:0}}
+
+/* v3：事務所案内に関連案内を統合。モバイルFVは写真にコピーを重ねる。 */
+.office-links{grid-template-columns:1fr 1.15fr;gap:8%;margin-top:28px}
+.office-links .audience-card{min-height:0;padding:22px 26px;background:var(--pale)}
+.office-links .eyebrow{margin-bottom:8px}
+.office-links h2{font-size:23px;margin-bottom:10px}
+.office-links p:not(.eyebrow){font-size:13px;margin-bottom:12px}
+.office-links .link{font-size:13px}
+.office .map-placeholder{min-height:280px}
+@media(max-width:640px){
+ .office-links{grid-template-columns:1fr;gap:20px}
+ .hero{isolation:isolate;display:flex;padding:86px 8% 112px;min-height:100%;justify-content:center;overflow:hidden;background:#e8eef1}
+ .hero-photo{position:absolute;inset:0;max-width:none;width:100%;height:100%;z-index:-2}
+ .hero-photo .photo-crop{height:100%;width:100%}
+ .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(255,255,255,.92),rgba(255,255,255,.68) 64%,rgba(255,255,255,.28)),linear-gradient(0deg,rgba(255,255,255,.88),transparent 28%)}
+ .hero-copy{position:relative;width:100%;padding:0}
+ .hero h1{font-size:clamp(30px,8.5vw,46px);text-shadow:0 1px 8px #ffffff80}
+ .hero .prototype-label{top:16px;right:8%;color:var(--ink)}
+ .hero-photo .photo-caption{position:absolute;bottom:60px;left:8%;right:8%;padding:0;color:var(--ink);font-size:10px}
+ .hero .next-section{left:8%;right:8%;font-size:10px}
+ .brand span{font-size:clamp(14px,4vw,17px)}
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#copy">本文へ移動</a>
+<header class="site-header">
+  <a class="brand" href="#copy"><span>AKIRA LAW FIRM</span><strong>法律事務所 彰</strong></a>
+  <nav class="global-nav" aria-label="グローバルナビゲーション"><a href="#about">私たちについて</a><a href="#work">取扱業務</a><a href="#office">事務所案内</a><a href="#insurance">保険代理店の皆さまへ</a><a href="#recruit">採用情報</a><a class="nav-contact" href="#contact">お問い合わせ ↗</a></nav>
+  <details class="mobile-menu"><summary>メニュー</summary><nav aria-label="スマートフォンメニュー"><a href="#copy">TOP</a><a href="#values">私たちが大切にしていること</a><a href="#about">私たちについて</a><a href="#work">取扱業務</a><a href="#office">事務所案内</a><a href="#insurance">保険代理店の皆さまへ</a><a href="#recruit">採用情報</a><a href="#contact">お問い合わせ</a></nav></details>
+</header>
+<nav class="panel-nav" aria-label="TOPの各面へ移動"><a href="#copy" aria-label="1 コピー">01</a><a href="#values" aria-label="2 私たちが大切にしていること">02</a><a href="#about" aria-label="3 私たちについて">03</a><a href="#work" aria-label="4 取扱業務">04</a><a href="#office" aria-label="5 事務所案内">05</a><a href="#contact" aria-label="6 お問い合わせ">06</a></nav>
+<main class="stage" id="stage" tabindex="0" aria-label="TOPページ。上下にスクロールして6つの面を移動できます。">
+  <section class="panel hero" id="copy" aria-labelledby="copy-heading" tabindex="-1">
+    <p class="prototype-label">A案・6面スクロール試作 v3 ／ 写真はAIイメージ・原稿は確認前</p>
+    <div class="hero-copy"><p class="eyebrow">AKIRA LAW FIRM</p><h1 id="copy-heading">人に寄り添い、<br>人の力になる。</h1><p class="office-name">法律事務所 彰</p></div>
+    <figure class="hero-photo"><svg class="photo-crop" viewBox="368 116 382 338" preserveAspectRatio="xMidYMid slice" role="img" aria-label="相談室の仮イメージ。実際の事務所の写真ではありません。"><image href="/images/akira-reference.png" width="754" height="2086" /></svg><figcaption class="photo-caption">写真はイメージです。実際の事務所写真へ差し替え予定。</figcaption></figure>
+    <a class="next-section" href="#values">SCROLL — 私たちが大切にしていること ↓</a>
+  </section>
+  <section class="panel values" id="values" aria-labelledby="values-heading" tabindex="-1"><span class="section-step">02 / OUR VALUES</span>
+    <div class="thoughts"><div><p class="eyebrow">OUR THOUGHTS</p><h2>想いに向き合う。<br>可能性を、ともに。</h2></div><div class="thoughts-copy"><p>人生の中で、少しでも不安や悩みを抱えるネガティブな時期にある人を支え、前向きな未来に進む力になりたい。</p><p>そして、挑戦する人や事業の可能性を、より大きく伸ばすお手伝いをしたい。それが、法律事務所 彰の想いです。</p></div></div>
+    <h2 class="values-title" id="values-heading">私たちが大切にしていること</h2><div class="value-grid"><article><span class="number">01</span><h3>寄り添う</h3><p>一人ひとりの立場に立ち、丁寧に話を聞き、ともに最善の解決を目指します。</p></article><article><span class="number">02</span><h3>専門性</h3><p>これまでの経験を活かした実務的な視点で、的確かつ現実的な解決を目指します。</p></article><article><span class="number">03</span><h3>より良い未来へ</h3><p>目の前の問題だけでなく、その先の人生や事業が前向きに進むよう、全力でサポートします。</p></article><article><span class="number">04</span><h3>誠実に、まっすぐ</h3><p>依頼者が納得していない方向に進むことはありません。見通しを共有し、同じ方向を向いて進みます。</p></article></div>
+    <a class="next-section" href="#about">次へ — 私たちについて ↓</a>
+  </section>
+  <section class="panel about" id="about" aria-labelledby="about-heading" tabindex="-1"><span class="section-step">03 / ABOUT US</span><div class="about-grid"><div><svg class="photo-crop" viewBox="6 1249 405 280" role="img" aria-label="事務所内観の仮イメージ"><image href="/images/akira-reference.png" width="754" height="2086" /></svg><p class="photo-caption">実際の内観・相談室の写真に差し替え予定</p></div><div class="about-copy"><p class="eyebrow">ABOUT US</p><h2 id="about-heading">ともに、<br>より良い未来へ。</h2><p>一歩ずつ、着実に。<br>これからの明日を、ともにつくる<br>パートナーでありたい。</p><button type="button" class="button outline" data-preview="about">私たちについて ↗</button></div></div><a class="next-section" href="#work">次へ — 取扱業務 ↓</a></section>
+  <section class="panel work" id="work" aria-labelledby="work-heading" tabindex="-1"><span class="section-step">04 / PRACTICE AREAS</span><div class="work-head"><div><p class="eyebrow">PRACTICE AREAS</p><h2 id="work-heading">取扱業務</h2></div><p class="draft">横に送ると他の取扱業務をご覧いただけます。<br>以下は掲載候補です。対応範囲・説明文は確認後に掲載。</p></div>
+    <div class="carousel" role="region" aria-roledescription="カルーセル" aria-label="取扱業務6項目"><div class="carousel-track" id="practice-track" tabindex="0" aria-label="取扱業務カード。左右にスクロールできます。">
+      <article class="practice-card" role="group" aria-roledescription="スライド" aria-label="1 / 6 交通事故"><span class="number">01 / TRAFFIC ACCIDENTS</span><h3>交通事故</h3><p>対応する相談内容や、進め方などの紹介文をここに掲載します。</p></article>
+      <article class="practice-card" role="group" aria-roledescription="スライド" aria-label="2 / 6 損害賠償"><span class="number">02 / DAMAGES</span><h3>損害賠償</h3><p>対応範囲や、ご相談いただける内容の紹介文をここに掲載します。</p></article>
+      <article class="practice-card" role="group" aria-roledescription="スライド" aria-label="3 / 6 企業法務"><span class="number">03 / CORPORATE</span><h3>企業法務</h3><p>企業からの相談内容や、支援の進め方の紹介文をここに掲載します。</p></article>
+      <article class="practice-card" role="group" aria-roledescription="スライド" aria-label="4 / 6 労働問題"><span class="number">04 / LABOR</span><h3>労働問題</h3><p>対応する立場と相談内容を確認し、紹介文をここに掲載します。</p></article>
+      <article class="practice-card" role="group" aria-roledescription="スライド" aria-label="5 / 6 相続"><span class="number">05 / INHERITANCE</span><h3>相続</h3><p>対応範囲や、ご相談いただける内容の紹介文をここに掲載します。</p></article>
+      <article class="practice-card" role="group" aria-roledescription="スライド" aria-label="6 / 6 その他のご相談"><span class="number">06 / OTHER CONSULTATIONS</span><h3>その他のご相談</h3><p>相談内容の確認方法や、お問い合わせ方法をご案内します。</p></article>
+    </div><div class="carousel-controls"><span class="carousel-position" id="carousel-position" aria-live="polite">1–3 / 6</span><button type="button" class="round-button" id="previous-card" aria-label="前のカードへ" aria-controls="practice-track">←</button><button type="button" class="round-button" id="next-card" aria-label="次のカードへ" aria-controls="practice-track">→</button></div></div>
+    <a class="next-section" href="#office">次へ — 事務所案内 ↓</a>
+  </section>
+
+  <section class="panel office" id="office" aria-labelledby="office-heading" tabindex="-1"><span class="section-step">05 / OFFICE & ACCESS</span><div class="office-grid"><div><p class="eyebrow">OFFICE</p><h2 id="office-heading">事務所案内</h2><p class="office-name">法律事務所 彰</p><dl><div><dt>所在地</dt><dd>確認済みの住所・建物名を掲載</dd></div><div><dt>アクセス</dt><dd>最寄り駅・出口・徒歩分数を掲載</dd></div><div><dt>受付時間</dt><dd>曜日・受付時間を確認後に掲載</dd></div></dl></div><div class="map-placeholder" role="img" aria-label="地図の設置予定位置。所在地の確認待ち。"><strong>地図</strong><span>所在地の確認後に、実際の地図を表示</span><span>この面に直接掲載します</span></div></div><div class="audience-grid office-links"><article class="audience-card" id="insurance" tabindex="-1"><p class="eyebrow">FOR INSURANCE AGENCIES</p><h2>保険代理店の皆さまへ</h2><p>保険代理店向けのご案内を、確認済みの内容で掲載します。</p><button class="link" type="button" data-preview="insurance">保険代理店向けのご案内 ↗</button></article><article class="audience-card" id="recruit" tabindex="-1"><p class="eyebrow">RECRUIT</p><h2>採用情報</h2><p>募集の有無、募集要項、応募先を確認後にご案内します。</p><button class="link" type="button" data-preview="recruit">採用情報を見る ↗</button></article></div><a class="next-section" href="#contact">次へ — お問い合わせ ↓</a></section>
+  <section class="panel contact" id="contact" aria-labelledby="contact-heading" tabindex="-1"><span class="section-step" style="color:#c5dce9">06 / CONTACT</span><div><p class="eyebrow">CONTACT</p><h2 id="contact-heading">まずは、ご相談ください。</h2><p>ご相談・お問い合わせはこちらから。</p><button class="button" type="button" data-preview="contact">お問い合わせへ進む ↗</button><p class="draft">この試作では送信しません。受付方法・送信先は確認後に設定します。</p></div><footer class="footer"><a class="brand" href="#copy"><span>AKIRA LAW FIRM</span><strong>法律事務所 彰</strong></a><nav aria-label="フッターメニュー"><button type="button" data-preview="privacy">プライバシーポリシー</button><button type="button" data-preview="sitemap">サイトマップ</button><a href="#copy">TOPへ ↑</a></nav></footer></section>
+</main>
+<dialog class="dialog" id="detail-dialog" aria-labelledby="dialog-heading"><div class="close-row"><button type="button" id="close-dialog" autofocus>閉じる ×</button></div><p class="eyebrow">遷移先の構成プレビュー</p><h2 id="dialog-heading"></h2><p id="dialog-intro"></p><ul id="dialog-list"></ul><p class="draft">下層ページは未実装です。現在のサービスや募集状況を示すものではありません。</p><button class="link" type="button" id="dialog-to-contact">お問い合わせの面へ →</button></dialog>
+<script is:inline>
+(()=>{
+const stage=document.getElementById('stage');
+const panels=Array.from(stage.querySelectorAll('.panel'));
+const menu=document.querySelector('.mobile-menu');
+const prefersReduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const behavior=()=>prefersReduced()?'auto':'smooth';
+function moveTo(id,focus=true){
+ const target=document.getElementById(id);if(!target)return;
+ const panel=target.closest('.panel');if(!panel)return;
+ menu.open=false;
+ const point=target;
+ const top=point.getBoundingClientRect().top-stage.getBoundingClientRect().top+stage.scrollTop;
+ stage.scrollTo({top,behavior:behavior()});
+ if(focus)target.focus({preventScroll:true});
+}
+document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',event=>{const id=link.hash.slice(1);if(document.getElementById(id)){event.preventDefault();history.replaceState(null,'','#'+id);moveTo(id);}}));
+function updatePanelNavigation(){
+ const y=stage.scrollTop+stage.clientHeight*.4;
+ let active=panels[0];for(const panel of panels){const top=panel.getBoundingClientRect().top-stage.getBoundingClientRect().top+stage.scrollTop;if(top<=y)active=panel;}
+ document.querySelectorAll('.global-nav a,.panel-nav a').forEach(link=>{const target=document.getElementById(link.hash.slice(1));if(target===active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+}
+let frame=0;stage.addEventListener('scroll',()=>{if(frame)return;frame=requestAnimationFrame(()=>{updatePanelNavigation();frame=0;});},{passive:true});
+const track=document.getElementById('practice-track');
+const cards=Array.from(track.children);
+const prev=document.getElementById('previous-card');const next=document.getElementById('next-card');
+function cardStep(){return cards.length>1?cards[1].offsetLeft-cards[0].offsetLeft:track.clientWidth;}
+function syncCarousel(){
+ const max=Math.max(0,track.scrollWidth-track.clientWidth);prev.disabled=track.scrollLeft<=2;next.disabled=track.scrollLeft>=max-2;
+ const box=track.getBoundingClientRect();const visible=cards.map((card,i)=>({i,b:card.getBoundingClientRect()})).filter(({b})=>Math.min(b.right,box.right)-Math.max(b.left,box.left)>b.width*.5);
+ if(visible.length){const first=visible[0].i+1,last=visible[visible.length-1].i+1;document.getElementById('carousel-position').textContent=(first===last?String(first):first+'–'+last)+' / '+cards.length;}
+}
+function slide(direction){track.scrollBy({left:direction*cardStep(),behavior:behavior()});}
+prev.addEventListener('click',()=>slide(-1));next.addEventListener('click',()=>slide(1));
+track.addEventListener('keydown',event=>{if(event.target!==track)return;if(event.key==='ArrowRight'){event.preventDefault();slide(1);}if(event.key==='ArrowLeft'){event.preventDefault();slide(-1);}});
+let cardFrame=0;track.addEventListener('scroll',()=>{if(cardFrame)return;cardFrame=requestAnimationFrame(()=>{syncCarousel();cardFrame=0;});},{passive:true});
+new ResizeObserver(()=>{syncCarousel();updatePanelNavigation();}).observe(stage);
+const details={about:['私たちについて','事務所の想いと、確認済みの弁護士情報を案内するページです。',['事務所の理念','弁護士の氏名・所属・経歴','事務所の紹介']],insurance:['保険代理店の皆さまへ','確認済みの案内内容を掲載する専用ページを想定しています。',['受け付ける相談内容','連絡方法・必要な情報']],recruit:['採用情報','募集の有無・要項・応募先は未確定です。',['弁護士・事務職の募集情報','応募方法・求人サイトへのリンク']],contact:['お問い合わせ','本番ではフォーム等の受付ページへ進む想定です。この試作では送信や個人情報の収集は行いません。',['相談方法・費用の案内','入力項目・個人情報の取扱い','送信結果の案内']],privacy:['プライバシーポリシー','実際の問い合わせ運用に合わせて作成します。',['利用目的・管理方法','保存期間・問い合わせ窓口']],sitemap:['サイトマップ','ページの構成案です。',['TOP','私たちについて','取扱業務','保険代理店の皆さまへ','採用情報','事務所案内','お問い合わせ']]};
+const dialog=document.getElementById('detail-dialog');
+document.querySelectorAll('[data-preview]').forEach(button=>button.addEventListener('click',()=>{const data=details[button.dataset.preview];document.getElementById('dialog-heading').textContent=data[0];document.getElementById('dialog-intro').textContent=data[1];const list=document.getElementById('dialog-list');list.replaceChildren();data[2].forEach(text=>{const li=document.createElement('li');li.textContent=text;list.append(li);});document.getElementById('dialog-to-contact').hidden=button.dataset.preview==='contact';dialog.showModal();}));
+document.getElementById('close-dialog').addEventListener('click',()=>dialog.close());
+document.getElementById('dialog-to-contact').addEventListener('click',()=>{dialog.close();moveTo('contact');});
+window.addEventListener('hashchange',()=>moveTo(location.hash.slice(1),false));
+window.addEventListener('load',()=>{if(location.hash)moveTo(location.hash.slice(1),false);syncCarousel();updatePanelNavigation();});
+syncCarousel();updatePanelNavigation();
+})();
+</script>
+</body>
+</html>
