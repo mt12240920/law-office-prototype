@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>法律事務所 彰｜6面スクロール試作 v3</title>
+<title>法律事務所 彰｜6面スクロール試作 v4</title>
 <meta name="description" content="法律事務所 彰の構成・スクロール動作確認用プロトタイプ。">
 <style is:global>
 /* 試作専用。既存のTOPとは独立して配置してください。 */
@@ -50,6 +50,12 @@
  .brand span{font-size:clamp(14px,4vw,17px)}
 }
 
+
+/* v4：提供写真をFVへ。画像自体は加工せず表示範囲のみ調整。 */
+.hero-image{display:block;width:100%;height:auto;aspect-ratio:382/338;object-fit:cover;object-position:78% center;background:#dce7ec}
+@media(max-width:640px){
+ .hero-photo .hero-image{width:100%;height:100%;aspect-ratio:auto;object-position:85% center}
+}
 </style>
 </head>
 <body>
@@ -62,9 +68,9 @@
 <nav class="panel-nav" aria-label="TOPの各面へ移動"><a href="#copy" aria-label="1 コピー">01</a><a href="#values" aria-label="2 私たちが大切にしていること">02</a><a href="#about" aria-label="3 私たちについて">03</a><a href="#work" aria-label="4 取扱業務">04</a><a href="#office" aria-label="5 事務所案内">05</a><a href="#contact" aria-label="6 お問い合わせ">06</a></nav>
 <main class="stage" id="stage" tabindex="0" aria-label="TOPページ。上下にスクロールして6つの面を移動できます。">
   <section class="panel hero" id="copy" aria-labelledby="copy-heading" tabindex="-1">
-    <p class="prototype-label">A案・6面スクロール試作 v3 ／ 写真はAIイメージ・原稿は確認前</p>
+    <p class="prototype-label">A案・6面スクロール試作 v4 ／ 原稿は確認前・内観写真はAIイメージ</p>
     <div class="hero-copy"><p class="eyebrow">AKIRA LAW FIRM</p><h1 id="copy-heading">人に寄り添い、<br>人の力になる。</h1><p class="office-name">法律事務所 彰</p></div>
-    <figure class="hero-photo"><svg class="photo-crop" viewBox="368 116 382 338" preserveAspectRatio="xMidYMid slice" role="img" aria-label="相談室の仮イメージ。実際の事務所の写真ではありません。"><image href="/images/akira-reference.png" width="754" height="2086" /></svg><figcaption class="photo-caption">写真はイメージです。実際の事務所写真へ差し替え予定。</figcaption></figure>
+    <figure class="hero-photo"><img class="hero-image" src="/images/momochi-beach.jpg" width="2048" height="1365" alt="青空の下に広がる百道浜の海と砂浜、福岡タワー" fetchpriority="high" decoding="async" /><figcaption class="photo-caption">福岡・百道浜</figcaption></figure>
     <a class="next-section" href="#values">SCROLL — 私たちが大切にしていること ↓</a>
   </section>
   <section class="panel values" id="values" aria-labelledby="values-heading" tabindex="-1"><span class="section-step">02 / OUR VALUES</span>
