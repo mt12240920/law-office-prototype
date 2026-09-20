@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>法律事務所 彰｜6面スクロール試作 v5</title>
+<title>法律事務所 彰｜5面スクロール試作 v6</title>
 <meta name="description" content="法律事務所 彰の構成・スクロール動作確認用プロトタイプ。">
 <style is:global>
 /* 試作専用。既存のTOPとは独立して配置してください。 */
@@ -96,19 +96,62 @@ html{--ink:#143957;--navy:#164b70;--pale:#edf8fd;--line:#cfe5f0;--gold:#83bcd7}
  .hero{min-height:580px;print-color-adjust:exact}
  .contact{print-color-adjust:exact}
 }
+
+/* v6 — 白い余白、明朝体、大きな地図。スクロールとカルーセルは既存処理を継承。 */
+html{--ink:#193449;--navy:#174876;--line:#dce3e8;--gold:#4899fe;--pale:#f7f9fb}
+.site-header{background:#fff;border-bottom:1px solid #edf0f3;padding-inline:4%}
+.global-nav{gap:20px}.global-nav .nav-contact{border:0;background:none;padding:9px 0;color:var(--ink)}
+.panel{padding-inline:8%;padding-top:64px;padding-bottom:64px}
+h2{font-size:clamp(30px,3.3vw,48px);letter-spacing:.08em}
+.eyebrow,.section-step{font-weight:400;letter-spacing:.18em}
+.section-step{top:22px;color:#667888}
+.values{background:#fff}.thoughts{gap:8%;margin-bottom:42px}.thoughts h2{font-size:clamp(28px,3.2vw,45px)}
+.values-title{font-size:17px;margin-bottom:22px}.value-grid{gap:28px}
+.value-grid article{border-top:0;border-left:1px solid var(--line);padding:0 0 0 18px}
+.value-grid .number{color:#2679ca;font-size:23px}.value-grid h3{font-size:21px}.value-grid p{color:#526371}
+.about-link{margin-top:24px;text-align:right}.about-link .link{border-color:#4899fe;padding-inline:0;min-width:190px;text-align:left}
+.work{background:#fff}.work-head{margin-bottom:28px}.work-head .draft{font-size:11px}
+.practice-card{background:linear-gradient(180deg,#fff,#f8fafc);border-top:2px solid #4899fe;padding:28px;min-height:clamp(300px,43svh,460px)}
+.practice-card .number{color:#4c6b84;font-family:Georgia,serif;letter-spacing:.08em}
+.practice-card h3{font-size:28px;margin-top:42px}.practice-card p{font-size:15px;color:#526371}
+.round-button{border-color:#dce3e8}.carousel-controls{margin-top:12px}
+.office-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:5%;align-items:center}
+.office-grid h2{font-size:clamp(28px,3vw,43px)}.office-grid .office-name{margin-top:28px}
+.office-grid dl>div{grid-template-columns:68px 1fr;gap:12px;font-size:13px;padding:15px 0}
+.office .map-placeholder{min-height:clamp(330px,49svh,560px);width:100%;border:0;background:linear-gradient(135deg,#f0f2f3,#e5e8ea);color:#647481}
+.map-placeholder strong{font-size:32px}.map-placeholder span{color:#566572}
+.office-links{grid-template-columns:1fr 1fr;gap:7%;margin-top:24px}
+.office-links .audience-card{padding:12px 0;background:none;border:0;border-bottom:1px solid #bac8d3;min-height:0}
+.office-links .eyebrow,.office-links h2,.office-links p:not(.eyebrow){display:none}
+.office-links .link{width:100%;text-align:left;border:0;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;margin:0;padding:8px 0}
+.contact{isolation:isolate;background:#fff;color:#fff;text-align:left;padding:86px 12% 130px;justify-content:center}
+.contact:before{content:"";position:absolute;inset:20px 0 0;z-index:-1;border-top-right-radius:clamp(80px,13vw,220px);background:radial-gradient(ellipse at 10% 3%,#8ecbff88,transparent 52%),linear-gradient(125deg,#4899fe 0%,#267bc9 40%,#174876 100%)}
+.contact .section-step{color:#e1edfa!important;left:8%;top:46px}.contact .eyebrow{color:#e2efff}
+.contact h2{font-size:clamp(36px,4.7vw,66px);line-height:1.6;letter-spacing:.1em}
+.contact>div>p.contact-lead{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;margin:20px 0 28px}
+.contact .button{background:transparent;color:#fff;border:1px solid #d0e5fb;min-width:260px}
+.contact .draft{color:#e1edfa}.contact .footer{border-color:#ffffff40;color:#fff;bottom:18px}
+.panel-nav{border:0;background:#ffffffd9;border-radius:0}.panel-nav a{border-radius:0}
+@media(max-width:1120px){.global-nav{gap:12px}.panel{padding-inline:7%}.contact{padding-inline:12%}.value-grid{gap:18px}.value-grid h3{font-size:18px}}
+@media(max-width:850px){.office-grid{grid-template-columns:1fr}.office .map-placeholder{min-height:350px}.thoughts{grid-template-columns:1fr;gap:24px}.values{background:#fff}.panel{padding-block:58px 66px}.stage{scroll-snap-type:y proximity}.contact{padding-top:80px;padding-bottom:36px}.contact .footer{position:static;margin-top:48px}.contact h2{font-size:42px}}
+@media(max-width:640px){.panel{padding-inline:8%}.hero{padding-top:86px;padding-bottom:112px}.hero h1{font-size:clamp(30px,8.5vw,46px)}.hero-photo .hero-image{object-position:85% center}.value-grid{gap:24px}.value-grid article{padding-left:14px}.value-grid h3{font-size:21px}.value-grid p{font-size:14px}.thoughts h2{font-size:30px}.thoughts-copy{font-size:14px}.values-title{font-size:17px}.practice-card{flex:0 0 100%;padding:26px;min-height:340px}.practice-card p{font-size:16px}.office-links{grid-template-columns:1fr;gap:8px}.office .map-placeholder{min-height:320px}.contact h2{font-size:clamp(30px,8.7vw,42px)}.contact>div>p.contact-lead{font-size:19px}.contact .section-step{top:42px}.contact .button{min-width:0;width:100%}.contact .footer{margin-top:40px}.about-link{text-align:left}}
+@media(max-height:700px) and (min-width:851px){.stage{scroll-snap-type:y proximity}.contact .footer{position:static;margin-top:32px}.contact{padding-bottom:36px}.office .map-placeholder{min-height:330px}}
+@media(prefers-reduced-motion:reduce){.stage,.carousel-track{scroll-behavior:auto;scroll-snap-type:none}}
+@media print{.stage{height:auto;overflow:visible}.panel{min-height:0}.contact{print-color-adjust:exact}.contact .footer{position:static;margin-top:30px}.practice-card{min-height:0}}
+
 </style>
 </head>
 <body>
 <a class="skip" href="#copy">本文へ移動</a>
 <header class="site-header">
   <a class="brand" href="#copy"><span>AKIRA LAW FIRM</span><strong>法律事務所 彰</strong></a>
-  <nav class="global-nav" aria-label="グローバルナビゲーション"><a href="#about">私たちについて</a><a href="#work">取扱業務</a><a href="#office">事務所案内</a><a href="#insurance">保険代理店の皆さまへ</a><a href="#recruit">採用情報</a><a class="nav-contact" href="#contact">お問い合わせ ↗</a></nav>
-  <details class="mobile-menu"><summary>メニュー</summary><nav aria-label="スマートフォンメニュー"><a href="#copy">TOP</a><a href="#values">私たちが大切にしていること</a><a href="#about">私たちについて</a><a href="#work">取扱業務</a><a href="#office">事務所案内</a><a href="#insurance">保険代理店の皆さまへ</a><a href="#recruit">採用情報</a><a href="#contact">お問い合わせ</a></nav></details>
+  <nav class="global-nav" aria-label="グローバルナビゲーション"><a href="#values">私たちについて</a><a href="#work">取扱業務</a><a href="#office">事務所案内</a><a href="#insurance">保険代理店の皆さまへ</a><a href="#recruit">採用情報</a><a class="nav-contact" href="#contact">お問い合わせ ↗</a></nav>
+  <details class="mobile-menu"><summary>メニュー</summary><nav aria-label="スマートフォンメニュー"><a href="#copy">TOP</a><a href="#values">私たちが大切にしていること</a><a href="#values">私たちについて</a><a href="#work">取扱業務</a><a href="#office">事務所案内</a><a href="#insurance">保険代理店の皆さまへ</a><a href="#recruit">採用情報</a><a href="#contact">お問い合わせ</a></nav></details>
 </header>
-<nav class="panel-nav" aria-label="TOPの各面へ移動"><a href="#copy" aria-label="1 コピー">01</a><a href="#values" aria-label="2 私たちが大切にしていること">02</a><a href="#about" aria-label="3 私たちについて">03</a><a href="#work" aria-label="4 取扱業務">04</a><a href="#office" aria-label="5 事務所案内">05</a><a href="#contact" aria-label="6 お問い合わせ">06</a></nav>
-<main class="stage" id="stage" tabindex="0" aria-label="TOPページ。上下にスクロールして6つの面を移動できます。">
+<nav class="panel-nav" aria-label="TOPの各面へ移動"><a href="#copy" aria-label="1 コピー">01</a><a href="#values" aria-label="2 私たちについて">02</a><a href="#work" aria-label="3 取扱業務">03</a><a href="#office" aria-label="4 事務所案内">04</a><a href="#contact" aria-label="5 お問い合わせ">05</a></nav>
+<main class="stage" id="stage" tabindex="0" aria-label="TOPページ。上下にスクロールして5つの面を移動できます。">
   <section class="panel hero" id="copy" aria-labelledby="copy-heading" tabindex="-1">
-    <p class="prototype-label">A案・6面スクロール試作 v5 ／ 原稿は確認前・内観写真はAIイメージ</p>
+    <p class="prototype-label">A案・5面スクロール試作 v6 ／ 原稿は確認前・内観写真はAIイメージ</p>
     <div class="hero-copy"><p class="eyebrow">AKIRA LAW FIRM</p><h1 id="copy-heading">人に寄り添い、<br>人の力になる。</h1><p class="office-name">法律事務所 彰</p></div>
     <figure class="hero-photo"><img class="hero-image" src="/images/momochi-beach.jpg" width="2048" height="1365" alt="青空の下に広がる百道浜の海と砂浜、福岡タワー" fetchpriority="high" decoding="async" /><figcaption class="photo-caption">福岡・百道浜</figcaption></figure>
     <a class="next-section" href="#values">SCROLL — 私たちが大切にしていること ↓</a>
@@ -116,10 +159,9 @@ html{--ink:#143957;--navy:#164b70;--pale:#edf8fd;--line:#cfe5f0;--gold:#83bcd7}
   <section class="panel values" id="values" aria-labelledby="values-heading" tabindex="-1"><span class="section-step">02 / OUR VALUES</span>
     <div class="thoughts"><div><p class="eyebrow">OUR THOUGHTS</p><h2>想いに向き合う。<br>可能性を、ともに。</h2></div><div class="thoughts-copy"><p>人生の中で、少しでも不安や悩みを抱えるネガティブな時期にある人を支え、前向きな未来に進む力になりたい。</p><p>そして、挑戦する人や事業の可能性を、より大きく伸ばすお手伝いをしたい。それが、法律事務所 彰の想いです。</p></div></div>
     <h2 class="values-title" id="values-heading">私たちが大切にしていること</h2><div class="value-grid"><article><span class="number">01</span><h3>寄り添う</h3><p>一人ひとりの立場に立ち、丁寧に話を聞き、ともに最善の解決を目指します。</p></article><article><span class="number">02</span><h3>専門性</h3><p>これまでの経験を活かした実務的な視点で、的確かつ現実的な解決を目指します。</p></article><article><span class="number">03</span><h3>より良い未来へ</h3><p>目の前の問題だけでなく、その先の人生や事業が前向きに進むよう、全力でサポートします。</p></article><article><span class="number">04</span><h3>誠実に、まっすぐ</h3><p>依頼者が納得していない方向に進むことはありません。見通しを共有し、同じ方向を向いて進みます。</p></article></div>
-    <a class="next-section" href="#about">次へ — 私たちについて ↓</a>
+    <div class="about-link"><button type="button" class="link" data-preview="about">私たちについて →</button></div><a class="next-section" href="#work">次へ — 取扱業務 ↓</a>
   </section>
-  <section class="panel about" id="about" aria-labelledby="about-heading" tabindex="-1"><span class="section-step">03 / ABOUT US</span><div class="about-grid"><div><svg class="photo-crop" viewBox="6 1249 405 280" role="img" aria-label="事務所内観の仮イメージ"><image href="/images/akira-reference.png" width="754" height="2086" /></svg><p class="photo-caption">実際の内観・相談室の写真に差し替え予定</p></div><div class="about-copy"><p class="eyebrow">ABOUT US</p><h2 id="about-heading">ともに、<br>より良い未来へ。</h2><p>一歩ずつ、着実に。<br>これからの明日を、ともにつくる<br>パートナーでありたい。</p><button type="button" class="button outline" data-preview="about">私たちについて ↗</button></div></div><a class="next-section" href="#work">次へ — 取扱業務 ↓</a></section>
-  <section class="panel work" id="work" aria-labelledby="work-heading" tabindex="-1"><span class="section-step">04 / PRACTICE AREAS</span><div class="work-head"><div><p class="eyebrow">PRACTICE AREAS</p><h2 id="work-heading">取扱業務</h2></div><p class="draft">横に送ると他の取扱業務をご覧いただけます。<br>以下は掲載候補です。対応範囲・説明文は確認後に掲載。</p></div>
+  <section class="panel work" id="work" aria-labelledby="work-heading" tabindex="-1"><span class="section-step">03 / PRACTICE AREAS</span><div class="work-head"><div><p class="eyebrow">PRACTICE AREAS</p><h2 id="work-heading">取扱業務</h2></div><p class="draft">横に送ると他の取扱業務をご覧いただけます。<br>以下は掲載候補です。対応範囲・説明文は確認後に掲載。</p></div>
     <div class="carousel" role="region" aria-roledescription="カルーセル" aria-label="取扱業務6項目"><div class="carousel-track" id="practice-track" tabindex="0" aria-label="取扱業務カード。左右にスクロールできます。">
       <article class="practice-card" role="group" aria-roledescription="スライド" aria-label="1 / 6 交通事故"><span class="number">01 / TRAFFIC ACCIDENTS</span><h3>交通事故</h3><p>対応する相談内容や、進め方などの紹介文をここに掲載します。</p></article>
       <article class="practice-card" role="group" aria-roledescription="スライド" aria-label="2 / 6 損害賠償"><span class="number">02 / DAMAGES</span><h3>損害賠償</h3><p>対応範囲や、ご相談いただける内容の紹介文をここに掲載します。</p></article>
@@ -131,8 +173,8 @@ html{--ink:#143957;--navy:#164b70;--pale:#edf8fd;--line:#cfe5f0;--gold:#83bcd7}
     <a class="next-section" href="#office">次へ — 事務所案内 ↓</a>
   </section>
 
-  <section class="panel office" id="office" aria-labelledby="office-heading" tabindex="-1"><span class="section-step">05 / OFFICE & ACCESS</span><div class="office-grid"><div><p class="eyebrow">OFFICE</p><h2 id="office-heading">事務所案内</h2><p class="office-name">法律事務所 彰</p><dl><div><dt>所在地</dt><dd>確認済みの住所・建物名を掲載</dd></div><div><dt>アクセス</dt><dd>最寄り駅・出口・徒歩分数を掲載</dd></div><div><dt>受付時間</dt><dd>曜日・受付時間を確認後に掲載</dd></div></dl></div><div class="map-placeholder" role="img" aria-label="地図の設置予定位置。所在地の確認待ち。"><strong>地図</strong><span>所在地の確認後に、実際の地図を表示</span><span>この面に直接掲載します</span></div></div><div class="audience-grid office-links"><article class="audience-card" id="insurance" tabindex="-1"><p class="eyebrow">FOR INSURANCE AGENCIES</p><h2>保険代理店の皆さまへ</h2><p>保険代理店向けのご案内を、確認済みの内容で掲載します。</p><button class="link" type="button" data-preview="insurance">保険代理店向けのご案内 ↗</button></article><article class="audience-card" id="recruit" tabindex="-1"><p class="eyebrow">RECRUIT</p><h2>採用情報</h2><p>募集の有無、募集要項、応募先を確認後にご案内します。</p><button class="link" type="button" data-preview="recruit">採用情報を見る ↗</button></article></div><a class="next-section" href="#contact">次へ — お問い合わせ ↓</a></section>
-  <section class="panel contact" id="contact" aria-labelledby="contact-heading" tabindex="-1"><span class="section-step" style="color:#c5dce9">06 / CONTACT</span><div><p class="eyebrow">CONTACT</p><h2 id="contact-heading">まずは、ご相談ください。</h2><p>ご相談・お問い合わせはこちらから。</p><button class="button" type="button" data-preview="contact">お問い合わせへ進む ↗</button><p class="draft">この試作では送信しません。受付方法・送信先は確認後に設定します。</p></div><footer class="footer"><a class="brand" href="#copy"><span>AKIRA LAW FIRM</span><strong>法律事務所 彰</strong></a><nav aria-label="フッターメニュー"><button type="button" data-preview="privacy">プライバシーポリシー</button><button type="button" data-preview="sitemap">サイトマップ</button><a href="#copy">TOPへ ↑</a></nav></footer></section>
+  <section class="panel office" id="office" aria-labelledby="office-heading" tabindex="-1"><span class="section-step">04 / OFFICE & ACCESS</span><div class="office-grid"><div><p class="eyebrow">OFFICE</p><h2 id="office-heading">事務所案内</h2><p class="office-name">法律事務所 彰</p><dl><div><dt>所在地</dt><dd>確認済みの住所・建物名を掲載</dd></div><div><dt>アクセス</dt><dd>最寄り駅・出口・徒歩分数を掲載</dd></div><div><dt>受付時間</dt><dd>曜日・受付時間を確認後に掲載</dd></div></dl></div><div class="map-placeholder" role="img" aria-label="地図の設置予定位置。所在地の確認待ち。"><strong>地図</strong><span>所在地の確認後に、実際の地図を表示</span><span>この面に直接掲載します</span></div></div><div class="audience-grid office-links"><article class="audience-card" id="insurance" tabindex="-1"><p class="eyebrow">FOR INSURANCE AGENCIES</p><h2>保険代理店の皆さまへ</h2><p>保険代理店向けのご案内を、確認済みの内容で掲載します。</p><button class="link" type="button" data-preview="insurance">保険代理店向けのご案内 ↗</button></article><article class="audience-card" id="recruit" tabindex="-1"><p class="eyebrow">RECRUIT</p><h2>採用情報</h2><p>募集の有無、募集要項、応募先を確認後にご案内します。</p><button class="link" type="button" data-preview="recruit">採用情報を見る ↗</button></article></div><a class="next-section" href="#contact">次へ — お問い合わせ ↓</a></section>
+  <section class="panel contact" id="contact" aria-labelledby="contact-heading" tabindex="-1"><span class="section-step" style="color:#c5dce9">05 / CONTACT</span><div><p class="eyebrow">CONTACT</p><h2 id="contact-heading">ともに、<br>より良い未来へ。</h2><p class="contact-lead">まずは、ご相談ください。</p><button class="button" type="button" data-preview="contact">お問い合わせへ進む ↗</button><p class="draft">この試作では送信しません。受付方法・送信先は確認後に設定します。</p></div><footer class="footer"><a class="brand" href="#copy"><span>AKIRA LAW FIRM</span><strong>法律事務所 彰</strong></a><nav aria-label="フッターメニュー"><button type="button" data-preview="privacy">プライバシーポリシー</button><button type="button" data-preview="sitemap">サイトマップ</button><a href="#copy">TOPへ ↑</a></nav></footer></section>
 </main>
 <dialog class="dialog" id="detail-dialog" aria-labelledby="dialog-heading"><div class="close-row"><button type="button" id="close-dialog" autofocus>閉じる ×</button></div><p class="eyebrow">遷移先の構成プレビュー</p><h2 id="dialog-heading"></h2><p id="dialog-intro"></p><ul id="dialog-list"></ul><p class="draft">下層ページは未実装です。現在のサービスや募集状況を示すものではありません。</p><button class="link" type="button" id="dialog-to-contact">お問い合わせの面へ →</button></dialog>
 <script is:inline>
@@ -143,10 +185,11 @@ const menu=document.querySelector('.mobile-menu');
 const prefersReduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const behavior=()=>prefersReduced()?'auto':'smooth';
 function moveTo(id,focus=true){
+ if(id==='about')id='values';
  const target=document.getElementById(id);if(!target)return;
  const panel=target.closest('.panel');if(!panel)return;
  menu.open=false;
- const point=target;
+ const point=window.matchMedia('(min-width: 851px) and (min-height: 701px)').matches?panel:target;
  const top=point.getBoundingClientRect().top-stage.getBoundingClientRect().top+stage.scrollTop;
  stage.scrollTo({top,behavior:behavior()});
  if(focus)target.focus({preventScroll:true});
